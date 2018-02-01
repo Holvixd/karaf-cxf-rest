@@ -305,6 +305,21 @@
         <groupId>io.fabric8</groupId>
         <artifactId>fabric8-maven-plugin</artifactId>
         <version>${fabric8.maven.plugin.version}</version>
+        <configuration>
+          <images>
+            <image>
+              <name>foo:latest</name>
+              <alias>foo</alias>
+              <build>
+                 <fromExt><name>fis-karaf-openshift:2.0</name><kind>ImageStreamTag</kind><namespace>openshift</namespace></fromExt>
+                 <assembly>
+                   <permissions>exec</permissions>
+                   <descriptorRef>karaf</descriptorRef>
+                 </assembly>
+              </build>
+            </image>
+          </images>
+        </configuration>
         <executions>
           <execution>
             <id>generate-resource</id>
@@ -318,7 +333,7 @@
             <phase>install</phase>
             <goals>
               <goal>build</goal>
-            </goals>
+            </goals>   
           </execution>
         </executions>
       </plugin>
